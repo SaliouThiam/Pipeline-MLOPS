@@ -2,3 +2,5 @@ scikit-learn
 pandas
 mlflow
 pytest
+joblib
+FastAPI

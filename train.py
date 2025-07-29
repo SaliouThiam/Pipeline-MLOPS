@@ -4,6 +4,7 @@ from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import joblib
 
 # Chargement des données
 iris = load_iris()
@@ -33,6 +34,14 @@ if __name__ == "__main__":
     with mlflow.start_run():
         mlflow.log_param("n_estimators", 200)
         mlflow.log_metric("accuracy", acc)
-        mlflow.sklearn.log_model(clf, "iris_model")
+         # 🔁 Sauvegarde locale
+        joblib.dump(clf, "model.joblib")
 
+        # 📦 Sauvegarde dans MLflow UI (comme artefact)
+        mlflow.log_artifact("model.joblib")
+        
+        mlflow.sklearn.log_model(clf, "iris_model")
+        
+
+        
     print(f"Accuracy: {acc:.3f}")
