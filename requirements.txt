@@ -4,3 +4,4 @@ mlflow
 pytest
 joblib
 FastAPI
+python-multipart
